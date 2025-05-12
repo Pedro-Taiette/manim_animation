@@ -1,0 +1,35 @@
+graph LR
+subgraph Entrada e Memória
+Entrada[🖱️ Entrada de Dados]
+Memoria[🧠 Memória RAM]
+RegistradorEntrada[📥 Registrador de Entrada]
+end
+
+subgraph Unidade Central de Processamento
+UC[🧭 Unidade de Controle]
+subgraph Unidade Lógica e Aritmética
+ULA[🧮 Instruções booleanas]
+RegistradorInstrucao[📗 Registrador de Instrução]
+RegistradorSaida[📤 Registrador de Saída]
+end
+BarramentoDados[🛤️ Barramento de Dados]
+BarramentoControle[🛤️ Barramento de Controle]
+end
+
+subgraph Saída
+Saida[🖥️ Saída de Dados]
+end
+
+Entrada --> RegistradorEntrada
+RegistradorEntrada --> UC
+UC --> RegistradorInstrucao
+RegistradorInstrucao --> ULA
+UC -- "Sinais de controle" --> ULA
+Memoria -->|Busca de dados/instruções| RegistradorInstrucao
+ULA --> RegistradorSaida
+RegistradorSaida --> Saida
+
+UC -- "Comanda" --> BarramentoControle
+RegistradorEntrada -- "Troca de dados" --> BarramentoDados
+RegistradorSaida -- "Troca de dados" --> BarramentoDados
+Memoria -- "Troca de dados" --> BarramentoDados
